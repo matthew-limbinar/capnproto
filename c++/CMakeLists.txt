@@ -204,12 +204,16 @@ if(NOT MSVC)  # Don't install pkg-config files when building with MSVC
       pkgconfig/kj-async.pc
       pkgconfig/kj-gzip.pc
       pkgconfig/kj-http.pc
-      pkgconfig/kj-test.pc
       pkgconfig/kj-tls.pc
       pkgconfig/capnp-rpc.pc
       pkgconfig/capnp-websocket.pc
       pkgconfig/capnp-json.pc
     )
+    if(BUILD_TESTING)
+      list(APPEND CAPNP_PKG_CONFIG_FILES
+        pkgconfig/kj-test.pc
+      )
+    endif()
   endif()
 
   foreach(pcfile ${CAPNP_PKG_CONFIG_FILES})
